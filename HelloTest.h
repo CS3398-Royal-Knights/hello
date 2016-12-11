@@ -7,10 +7,6 @@
 template<class HELLOCLASS> 
 class HelloTest : public CPPUNIT_NS::TestFixture 
 {
-  CPPUNIT_TEST_SUITE( HelloTest );
-  CPPUNIT_TEST( testReturnMyInput );
-  CPPUNIT_TEST( testReturnMyInputShouldFail );
-  CPPUNIT_TEST_SUITE_END();
 protected:
   HELLOCLASS	*m_hello;
   
@@ -19,11 +15,6 @@ public:
   {
   }
 
-  int countTestCases () const
-  { 
-    return 1; 
-  }
-  
   void setUp() 
   { 
     this->m_hello = new HELLOCLASS; 
@@ -34,15 +25,19 @@ public:
     delete this->m_hello; 
   }
   
-  void testReturnMyInput() 
+  //Test the subtract function in Hello with a test case
+  //that should pass.
+  void testSubtract() 
   { 
-    CPPUNIT_ASSERT( this->m_hello->retMyInput(true) );//Should pass because we pass in true
+    CPPUNIT_ASSERT( this->m_hello->subtractFailIfNeg(3, 2) );
   }
 
-  void testReturnMyInputShouldFail() 
+  //Test the subtract function in Hello with a test case
+  //that should fail.
+  void testSubtractShouldFail() 
   { 
     CPPUNIT_NS::stdCOut() << "The following test fails, this is intended:" << "\n";
-    CPPUNIT_ASSERT( this->m_hello->retMyInput(false) );//Should fail because we're passing in false
+    CPPUNIT_ASSERT( this->m_hello->subtractFailIfNeg(2, 5) );
   }
 };
 

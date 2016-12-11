@@ -3,7 +3,7 @@
 
 class Hello {
   public:
-    virtual bool retMyInput(bool);
+    virtual bool subtractFailIfNeg(int a, int b);
     virtual ~Hello();
 };
 
